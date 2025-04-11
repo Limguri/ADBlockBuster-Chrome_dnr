@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>설정 - ADBlockBuster</title>
+  <link rel="stylesheet" href="css/setting.css">
+</head>
+<body>
+  <div class="settings-wrapper">
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="icons/images.png" alt="Logo" class="logo-img" />
+        <span class="logo-text">ADBlockBuster</span>
+      </div>
+      <nav class="menu">
+        <button id="menu-block-settings" class="menu-item">차단 설정</button>
+        <button id="menu-whitelist" class="menu-item">화이트리스트 관리</button>
+      </nav>
+    </aside>
+    <main class="content">
+      <section id="block-settings" class="setting-section">
+        <h2>전체 차단 설정</h2>
+        <label class="toggle-label">
+          <span>광고 차단 비활성화</span>
+          <label class="switch">
+            <input type="checkbox" id="globalBlockToggle">
+            <span class="slider round"></span>
+          </label>
+        </label>
+      </section>
+
+      <section id="whitelist-management" class="setting-section" style="display: none;">
+        <h2>화이트리스트 관리</h2>
+        <form id="whitelistForm" class="whitelist-form">
+          <input type="text" id="whitelistInput" placeholder="사이트 주소 입력 (예: example.com)" required />
+          <button type="submit">추가</button>
+        </form>
+        <ul id="whitelistList" class="whitelist-list"></ul>
+      </section>
+    </main>
+  </div>
+
+  <script type="module" src="js/setting.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+{
+  "name": "capstone_adblock",
+  "version": "1.0",
+  "description": "Remove Adware with Chrome extension",
+  "manifest_version": 3,
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "service-worker.js"
+  },
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "block_rule",
+        "enabled": true,
+        "path": "ruleset/block1.json"
+      }
+    ]
+  },
+  "permissions": [
+    "declarativeNetRequest",
+    "declarativeNetRequestFeedback",
+    "storage",
+    "scripting",
+    "tabs"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/images.png",
+      "48": "icons/images.png",
+      "128": "icons/images.png"
+    }
+  },
+  "icons": {
+    "16": "icons/images.png",
+    "48": "icons/images.png",
+    "128": "icons/images.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": ["setting.html"],
+      "matches": ["<all_urls>"]
+    }
+  ]
+}

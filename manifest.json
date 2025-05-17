@@ -7,15 +7,18 @@
   "background": {
     "service_worker": "service-worker.js"
   },
+  "minimum_chrome_version": "122",
   "declarative_net_request": {
-    "rule_resources": [
+    "remote_rule_resources": [
       {
-        "id": "block_rule",
+        "id": "remote_block_rule",
         "enabled": true,
-        "path": "ruleset/block1.json"
+        "url": "https://2025-AD-block-solution-capstone-design.github.io/ADBlockBuster-Chrome_dnr/ruleset/block1.json",
+        "format": "ruleset"
       }
     ]
-  },
+  }
+  ,
   "permissions": [
     "declarativeNetRequest",
     "declarativeNetRequestFeedback",

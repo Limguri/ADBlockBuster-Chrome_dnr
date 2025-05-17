@@ -1,7 +1,7 @@
 import fs   from "fs";
 import path from "path";
 import { downloadFile, extractVersion } from "./dnr_utils.js";
-import { DNRRuleGenerator }              from "./rule_gen.js";
+import { DNRRuleGenerator } from "./parser.js";
 
 const SRC_URL   = "https://easylist.to/easylist/easylist.txt";
 const TXT_TMP   = "easylist.txt";            // 임시

@@ -1,0 +1,25 @@
+name: Update-EasyList
+
+on:
+  schedule:
+    - cron: '0 21 * * *'        # 매일 KST 06:00
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with: { node-version: 20 }
+
+      - run: node js/dnr_generator.js   # ruleset/block1.json 생성
+
+      - name: Commit & push
+        run: |
+          git config user.name  "bot"
+          git config user.email "bot@users.noreply.github.com"
+          git add ruleset/block1.json easylist.version
+          git commit -m "auto: update EasyList $(date -u +'%Y%m%d%H%M')" || exit 0
+          git push

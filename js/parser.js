@@ -87,3 +87,5 @@ class DNRRuleGenerator {
         console.log(`생성 완료: ${outputPath}, (${ruleObjects.length}개 규칙)`);
     }
 }
+
+export { DNRRuleGenerator, DNRRuleParser, DNRRule, DNRBlockRule, DNRAllowRule };

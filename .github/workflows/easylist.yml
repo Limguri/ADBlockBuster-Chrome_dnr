@@ -1,34 +1,34 @@
 name: Update-EasyList
 on:
-  schedule: # 매일 06:00(UTC) 실행
-   - cron: '*/1 * * * *'  # 테스트용
-  #  [{ cron: '13 18 * * *' }] # 한국 06:00 = UTC 21:00
+  schedule:
+    - cron: '*/1 * * * *'     # 매일 KST 03:13
   workflow_dispatch:
 
-permissions:          # org 정책 때문에 read-only여도 OK
-  contents: read
+# GITHUB_TOKEN 권한 – 반드시 contents: write
+permissions:
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # 1) 리포 체크아웃 (GITHUB_TOKEN 자동 사용)
       - uses: actions/checkout@v4
-        with: { persist-credentials: false }   # ← 기본 GITHUB_TOKEN 제거
 
+      # 2) Node 환경
       - uses: actions/setup-node@v4
         with: { node-version: 20 }
 
-      - run: node js/dnr_generator.js          # block1.json·sha256 생성
+      # 3) EasyList → block1.json, easylist.sha256 재생성
+      - run: node js/dnr_generator.js
 
-      - name: Commit & push (PAT)
-        env:
-          PAT_PUSH: ${{ secrets.PAT_PUSH }}    # <- Secret 주입
+      # 4) 변경 파일 커밋 & 푸시
+      - name: Commit & push
         run: |
           git config user.name  "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
 
-          git add ruleset/block1.json
+          git add -f ruleset/block1.json
           git commit -m "auto: update EasyList $(date -u +'%Y%m%d%H%M')" || exit 0
+          git push
 
-          # PAT 포함된 URL로 푸시
-          git push "https://x-access-token:${PAT_PUSH}@github.com/${{ github.repository }}" HEAD:main

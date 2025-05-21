@@ -1,7 +1,7 @@
 name: Update-EasyList
 on:
   schedule: # 매일 06:00(UTC) 실행
-   - cron: '19 18 * * *'  # 테스트용
+   - cron: '*/1 * * * *'  # 테스트용
   #  [{ cron: '13 18 * * *' }] # 한국 06:00 = UTC 21:00
   workflow_dispatch:
 

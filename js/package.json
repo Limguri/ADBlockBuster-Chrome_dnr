@@ -1,9 +1,0 @@
-{
-    "name": "adblock-dnr",
-    "version": "1.0.0",
-    "type": "module",
-    "scripts": {
-      "update-rules": "node js/dnr_generator.js"
-    }
-  }
-  

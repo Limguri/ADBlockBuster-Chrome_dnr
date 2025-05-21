@@ -27,7 +27,7 @@ jobs:
           git config user.name  "${{ github.actor }}"
           git config user.email "${{ github.actor }}@users.noreply.github.com"
 
-          git add ruleset/block1.json easylist.sha256
+          git add ruleset/block1.json
           git commit -m "auto: update EasyList $(date -u +'%Y%m%d%H%M')" || exit 0
 
           # PAT 포함된 URL로 푸시

@@ -18,8 +18,8 @@ jobs:
 
       - name: Commit & push
         run: |
-          git config user.name  "bot"
-          git config user.email "bot@users.noreply.github.com"
+          git config --local user.name  "$GITHUB_ACTOR"
+          git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
           git add ruleset/block1.json easylist.version
           git commit -m "auto: update EasyList $(date -u +'%Y%m%d%H%M')" || exit 0
           git push

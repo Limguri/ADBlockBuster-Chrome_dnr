@@ -31,4 +31,4 @@ jobs:
           git commit -m "auto: update EasyList $(date -u +'%Y%m%d%H%M')" || exit 0
 
           # PAT 포함된 URL로 푸시
-          git push https://$PAT_PUSH@github.com/${{ github.repository }} HEAD:main
+          git push "https://x-access-token:${PAT_PUSH}@github.com/${{ github.repository }}" HEAD:main

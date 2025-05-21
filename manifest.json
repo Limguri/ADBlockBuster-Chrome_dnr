@@ -1,25 +1,29 @@
 {
-    "name": "capstone_adblock",
-    "version": "1.0",
-    "description": "Remove Adware with Chrome extension",
-    "manifest_version": 3,
-    "host_permissions": [
-        "<all_urls>"
-    ],
-    "background": {
-        "service_worker": "service-worker.js"
-    },
-    "minimum_chrome_version": "122",
-    "declarative_net_request": {
-        "rule_resources": [
-            {
-                "id": "block_rule",
-                "enabled": true,
-                "path": "ruleset/block1.json"
-            }
-        ]
-    },
-    "content_scripts": [
+  "name": "capstone_adblock",
+  "version": "1.1",                 
+  "description": "Remove Adware with Chrome extension",
+  "manifest_version": 3,
+  "host_permissions": ["<all_urls>"],
+
+  "background": { "service_worker": "service-worker.js" },
+
+  "declarative_net_request": {
+
+    "rule_resources": [
+      {
+        "id": "block_rule",        
+        "enabled": false,
+        "path": "ruleset/block1.json"
+      },
+      {
+        "id": "test_rule",
+        "enabled": true,
+        "path": "ruleset/block2.json"
+      }
+    ]
+  },
+
+  "content_scripts": [
         {
             "all_frames": true,
             "match_about_blank": true,
@@ -33,34 +37,25 @@
             ]
         }
     ],
-    "permissions": [
-        "declarativeNetRequest",
-        "declarativeNetRequestFeedback",
-        "storage",
-        "scripting",
-        "tabs"
-    ],
-    "action": {
-        "default_popup": "popup.html",
-        "default_icon": {
-            "16": "icons/images.png",
-            "48": "icons/images.png",
-            "128": "icons/images.png"
-        }
-    },
-    "icons": {
-        "16": "icons/images.png",
-        "48": "icons/images.png",
-        "128": "icons/images.png"
-    },
-    "web_accessible_resources": [
-        {
-            "resources": [
-                "setting.html"
-            ],
-            "matches": [
-                "<all_urls>"
-            ]
-        }
-    ]
+
+  "permissions": [
+    "declarativeNetRequest",
+    "declarativeNetRequestFeedback",
+    "storage", "scripting", "tabs", "alarms"
+  ],
+
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icons/images.png",
+      "48": "icons/images.png",
+      "128": "icons/images.png"
+    }
+  },
+
+  "icons": {
+    "16": "icons/images.png",
+    "48": "icons/images.png",
+    "128": "icons/images.png"
+  }
 }

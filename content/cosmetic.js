@@ -299,7 +299,7 @@ class CosmeticFilter {
 }
 
 
-chrome.runtime.sendMessage({type: 'GET_SELECTORS'}, async (response) => {
+chrome.runtime.sendMessage({type: 'GET_COSMETIC_RULESET'}, async (response) => {
     if (response?.ruleset?.length) {
         // 인스턴스 생성
         const cosmeticFilter = new CosmeticFilter(response.ruleset, {});
@@ -315,13 +315,13 @@ chrome.runtime.sendMessage({type: 'GET_SELECTORS'}, async (response) => {
         await cosmeticFilter.applyInlineCSS(matchedSelectors);
 
         // 광고 복원 시도 우회: DOM에서 직접 제거
-        // await cosmeticFilter.removeElements(matchedSelectors);
+        await cosmeticFilter.removeElements(matchedSelectors);
 
         // 스크롤/동적 렌더링 대응 (최초 1회 실행)
-        // await cosmeticFilter.observeDynamicContent(matchedSelectors);
+        await cosmeticFilter.observeDynamicContent(matchedSelectors);
 
         // Shadow DOM 내부 광고 대응 (최초 1회만 감시)
-        // await cosmeticFilter.observeShadowDOM(matchedSelectors);
+        await cosmeticFilter.observeShadowDOM(matchedSelectors);
     } else {
         console.warn('[Adblock] 룰셋이 없습니다.');
     }
